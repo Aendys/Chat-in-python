@@ -45,9 +45,9 @@ def listener(conn, addr):
         nickname = recv_obj(conn)
         if nickname['user'] not in nickname_list:
             nickname_list.append(nickname['user'])
-            print(("User " + "[" + nickname['user'] + "]" + " is connected\n"))
+            print(("User " + "[" + nickname['user'] + "]" + " is connected.\n"))
             for c in client_queues:
-                c.put(("User " + "[" + nickname['user'] + "]" + " is connected\n"))
+                c.put(("User " + "[" + nickname['user'] + "]" + " is connected.\n"))
         else:
             w_nickname = ("username_dup")
             send_obj(conn, w_nickname)
@@ -75,7 +75,7 @@ client_queues = set()
 threads = []
 
 while True:
-    print("Server is listenning...")
+    print("Server is listening...")
     conn, addr = s.accept()
     t = threading.Thread(target=listener, args=(conn, addr))
     threads.append(t)

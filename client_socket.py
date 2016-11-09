@@ -31,7 +31,7 @@ def recv_obj(s):
     data = recv_length(s, length)
     obj = pickle.loads(data)
     if obj == "username_dup":
-        sys.exit("Username alredy exist. Please choose another one.")
+        sys.exit("Username alredy exists. Please choose another.")
     return obj
 
 def recv_length(s, length):
@@ -39,7 +39,7 @@ def recv_length(s, length):
     while len(data) < length:
         msg = s.recv(length - len(data))
         if msg == b'':
-            raise Exception('Connection closed')
+            raise Exception('Connection closed.')
         data += msg
     return data
 
