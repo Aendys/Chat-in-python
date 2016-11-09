@@ -5,7 +5,7 @@ import queue
 import select
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = socket.gethostname()
+host = "0.0.0.0"
 port = 8080
 s.bind((host, port))
 s.listen(5)

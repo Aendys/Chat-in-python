@@ -5,19 +5,14 @@ import threading
 import select
 import queue
 import sys
-"""
+
 parser = argparse.ArgumentParser(description='Connect to server')
 parser.add_argument('--host', default='127.0.0.1')
 parser.add_argument('-p', '--port', default=8080)
 args = parser.parse_args()
-print(args.host)
-print(args.port)
-"""
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = socket.gethostname()
-port = 8080
-s.connect((host, port))
+s.connect((args.host, args.port))
 q = queue.Queue()
 
 def send_obj(s, obj):
@@ -55,10 +50,8 @@ def sender():
 
 def receiver():
     while True:
-        # pokud je ve fronte neco, co mame poslat, posleme to
         while not q.empty():
             send_obj(s, q.get())
-        # pokud server neco poslal, vypiseme to
         rlist, _, _ = select.select([s], [], [], 0.1)
         if s in rlist:
             print(recv_obj(s))
