@@ -8,7 +8,7 @@ import sys
 
 parser = argparse.ArgumentParser(description='Connect to server')
 parser.add_argument('--host', default='127.0.0.1')
-parser.add_argument('-p', '--port', default=8080)
+parser.add_argument('-p', '--port', type=int, default=8080)
 args = parser.parse_args()
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
